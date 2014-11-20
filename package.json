@@ -1,0 +1,18 @@
+{
+  "name": "linkedlist",
+  "version": "0.0.1",
+  "description": "An experiment in C",
+  "main": "linkedlist.o",
+  "scripts": {
+    "test": "lltest"
+  },
+  "author": "filip",
+  "license": "MIT",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-coffee": "^0.12.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-shell": "^1.1.1",
+    "time-grunt": "^1.0.0"
+  }
+}
