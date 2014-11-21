@@ -4,7 +4,7 @@
   "description": "An experiment in C",
   "main": "linkedlist.o",
   "scripts": {
-    "test": "lltest"
+    "test": "./lltest"
   },
   "author": "filip",
   "license": "MIT",
