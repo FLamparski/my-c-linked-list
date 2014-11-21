@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include "linkedlist.h"
-#include "../debug.h"
+#include "debug.h"
 
 LinkedList* ll_new() {
   LinkedList* list = malloc(sizeof(LinkedList));
@@ -45,7 +45,11 @@ int ll_append(LinkedList* list, void* el) {
   if (!list->first) {
     list->first = item;
   } else {
-    sentinel("Not yet implemented!");
+    LinkedListItem* current = list->first;
+    while(current->next) {
+      current = current->next;
+    }
+    current->next = item;
   }
   list->length++;
   return list->length;

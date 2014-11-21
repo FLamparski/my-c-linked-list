@@ -1,10 +1,9 @@
 #include <stdlib.h>
 #include "string.h"
 #include "linkedlist.h"
-#include "../debug.h"
+#include "debug.h"
 
 int main() {
-  log_info("Hello.");
   log_info("Creating a linked list.");
   LinkedList* list = ll_new();
   check(list->first == NULL, "List was not correctly initialised.");
@@ -29,6 +28,8 @@ int main() {
   int* another = malloc(sizeof(int));
   *another = v;
   ll_append(list, another);
+  check(list->length == 2, "Length increment failed");
+  check(*((int*) list->first->next->data) == v, "List increment screwed up");
 
   log_info("Freeing the linked list.");
   ll_free(list);
