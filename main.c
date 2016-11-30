@@ -13,7 +13,7 @@ int main() {
   int v = 1337;
   int* vpointer = malloc(sizeof(int));
   *vpointer = v;
-  ll_append(list, vpointer);
+  ll_prepend(list, vpointer);
   check(list->length == 1, "Length increment failed");
   check(list->first != NULL, "Append failed");
   check(list->first->data == vpointer, "Bad address");
@@ -22,14 +22,19 @@ int main() {
   check(*((int*) list->first->data) == v, "Bad value");
   log_info("The value is %d as expected",
       *((int*) list->first->data));
-  
+
   log_info("Adding another element.");
   v = 1338;
   int* another = malloc(sizeof(int));
   *another = v;
-  ll_append(list, another);
+  ll_prepend(list, another);
   check(list->length == 2, "Length increment failed");
-  check(*((int*) list->first->next->data) == v, "List increment screwed up");
+  check(*((int*) list->first->data) == v, "List increment screwed up");
+
+  log_info("Checking list[0].");
+  check(*((int*) ll_get(list, 0)) == v, "First element does not match what was last prepended.");
+  log_info("Checking list[1].");
+  check(*((int*) ll_get(list, 1)) == 1337, "First element does not match what was first prepended.");
 
   log_info("Freeing the linked list.");
   ll_free(list);

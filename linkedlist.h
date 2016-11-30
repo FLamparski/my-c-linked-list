@@ -1,14 +1,18 @@
 #ifndef LINKEDLIST_H
 #define LINKEDLIST_H
 typedef struct LinkedListItem {
-  struct LinkedListItem* next;
   void* data;
+  struct LinkedListItem* next;
 } LinkedListItem;
 
 typedef struct LinkedList {
   int length;
   LinkedListItem* first;
+  LinkedListItem* last;
 } LinkedList;
+
+LinkedListItem* _ll_item_new(void* data, LinkedListItem* next);
+void _ll_item_free(LinkedListItem* item);
 
 /**
  * Create a new linked list.
@@ -23,32 +27,11 @@ LinkedList* ll_new();
 void ll_free(LinkedList* list);
 
 /**
- * Append an item to the linked list.
+ * Add the element :elt: to the front of :list:
  *
- * @return The new length of the list, or -1 if the operation failed.
+ * @return The length of the list after this operation.
  */
-int ll_append(LinkedList* list, void* el);
-
-/**
- * Prepend an item to the linked list (insert at start).
- *
- * @return The new length of the list, or -1 if the operation failed.
- */
-int ll_push(LinkedList* list, void* el);
-
-/**
- * Insert an element at position :index: on the list.
- *
- * @return The new length of the list, or -1 if the operation failed.
- */
-int ll_insert_at(LinkedList* list, int index, void* el);
-
-/**
- * Replace a value of :list:[:index:] with :el:
- *
- * @return The old value at position :index:, or NULL if the operation fails.
- */
-void* ll_replace_at(LinkedList* list, int index, void* el);
+int ll_prepend(LinkedList* list, void* elt);
 
 /**
  * Get an item at position :index: on the list. List starts with index 0.
@@ -56,23 +39,7 @@ void* ll_replace_at(LinkedList* list, int index, void* el);
  *
  * @return The element at :index:, or NULL.
  */
-int ll_get(LinkedList* list, int index);
-
-/**
- * Remove an element from the start of the list and return it.
- * Please check for NULL.
- *
- * @return The element that was removed, or NULL if the operation failed.
- */
-void* ll_pop(LinkedList* list);
-
-/**
- * Remove an element from the position :index: and return it.
- * Please check for NULL.
- *
- * @return The element that was removed, or NULL if the operation failed.
- */
-void* ll_remove(LinkedList* list, int index);
+void* ll_get(LinkedList* list, int index);
 
 /**
  * Get the list's length.
